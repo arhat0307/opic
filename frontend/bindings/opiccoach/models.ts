@@ -23,19 +23,36 @@ export interface AnswerRecord {
 }
 
 export interface AppSettings {
+    "provider": string;
     "hasApiKey": boolean;
+    "hasOpenAIKey": boolean;
+    "hasGeminiKey": boolean;
     "demoMode": boolean;
     "evaluationModel": string;
     "transcribeModel": string;
     "realtimeModel": string;
+    "speechModel": string;
+    "speechVoice": string;
+    "geminiEvaluationModels": string[] | null;
+    "geminiTranscriptionModels": string[] | null;
+    "geminiSpeechModels": string[] | null;
+    "geminiSpeechVoice": string;
 }
 
 export interface ConfigureRequest {
+    "provider": string;
     "apiKey": string;
+    "geminiApiKey": string;
     "demoMode": boolean;
     "evaluationModel": string;
     "transcribeModel": string;
     "realtimeModel": string;
+    "speechModel": string;
+    "speechVoice": string;
+    "geminiEvaluationModels": string[] | null;
+    "geminiTranscriptionModels": string[] | null;
+    "geminiSpeechModels": string[] | null;
+    "geminiSpeechVoice": string;
 }
 
 export interface ExamConfig {
@@ -49,7 +66,17 @@ export interface ExamReport {
     "config": ExamConfig;
     "overall": OverallReport;
     "answers": AnswerRecord[] | null;
+    "answeredCount": number;
+    "totalCount": number;
+    "partial": boolean;
     "generatedAt": time$0.Time;
+}
+
+export interface GradePrediction {
+    "grade": string;
+    "probability": number;
+    "status": string;
+    "description": string;
 }
 
 export interface OverallReport {
@@ -57,7 +84,12 @@ export interface OverallReport {
     "estimatedBand": string;
     "summary": string;
     "strengths": string[] | null;
+    "weaknesses": string[] | null;
     "priorities": string[] | null;
+    "targetGrade": string;
+    "targetStatus": string;
+    "targetProbability": number;
+    "gradePredictions": GradePrediction[] | null;
 }
 
 export interface Question {
@@ -66,6 +98,11 @@ export interface Question {
     "topic": string;
     "text": string;
     "intent": string;
+}
+
+export interface SpeechResponse {
+    "audioBase64": string;
+    "mimeType": string;
 }
 
 export interface StartSessionResponse {

@@ -13,6 +13,14 @@ export function Configure(request: $models.ConfigureRequest): $CancellablePromis
     return $Call.ByID(1065098514, request);
 }
 
+export function FinalizeSession(sessionID: string): $CancellablePromise<$models.ExamReport> {
+    return $Call.ByID(3685135372, sessionID);
+}
+
+export function GenerateSpeech(text: string): $CancellablePromise<$models.SpeechResponse> {
+    return $Call.ByID(2776553183, text);
+}
+
 export function GetReport(sessionID: string): $CancellablePromise<$models.ExamReport> {
     return $Call.ByID(704064164, sessionID);
 }

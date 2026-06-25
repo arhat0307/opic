@@ -1,9 +1,18 @@
 export interface AppSettings {
+  provider: "openai" | "gemini";
   hasApiKey: boolean;
+  hasOpenAIKey: boolean;
+  hasGeminiKey: boolean;
   demoMode: boolean;
   evaluationModel: string;
   transcribeModel: string;
   realtimeModel: string;
+  speechModel: string;
+  speechVoice: string;
+  geminiEvaluationModels: string[];
+  geminiTranscriptionModels: string[];
+  geminiSpeechModels: string[];
+  geminiSpeechVoice: string;
 }
 
 export interface Question {
@@ -37,9 +46,21 @@ export interface ExamReport {
     estimatedBand: string;
     summary: string;
     strengths: string[];
+    weaknesses: string[];
     priorities: string[];
+    targetGrade: string;
+    targetStatus: string;
+    targetProbability: number;
+    gradePredictions: {
+      grade: string;
+      probability: number;
+      status: string;
+      description: string;
+    }[];
   };
   answers: AnswerRecord[];
+  answeredCount: number;
+  totalCount: number;
+  partial: boolean;
   generatedAt: string;
 }
-

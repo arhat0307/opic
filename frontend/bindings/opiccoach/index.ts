@@ -13,8 +13,10 @@ export type {
     ConfigureRequest,
     ExamConfig,
     ExamReport,
+    GradePrediction,
     OverallReport,
     Question,
+    SpeechResponse,
     StartSessionResponse,
     SubmitAnswerRequest,
     SubmitAnswerResponse

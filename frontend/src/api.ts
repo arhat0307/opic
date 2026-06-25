@@ -6,6 +6,8 @@ export const api = {
   configure: (settings: Record<string, unknown>) =>
     AppService.Configure(settings as never) as Promise<AppSettings>,
   testConnection: () => AppService.TestConnection() as Promise<void>,
+  generateSpeech: (text: string) =>
+    AppService.GenerateSpeech(text) as Promise<{ audioBase64: string; mimeType: string }>,
   startSession: (config: Record<string, unknown>) =>
     AppService.StartSession(config as never) as Promise<{
       sessionId: string;
@@ -20,5 +22,7 @@ export const api = {
       completed: boolean;
       progress: number;
     }>,
+  finalizeSession: (sessionId: string) =>
+    AppService.FinalizeSession(sessionId) as Promise<ExamReport>,
   getReport: (sessionId: string) => AppService.GetReport(sessionId) as Promise<ExamReport>
 };

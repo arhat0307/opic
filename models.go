@@ -5,19 +5,41 @@ import "time"
 const questionCount = 15
 
 type AppSettings struct {
-	HasAPIKey       bool   `json:"hasApiKey"`
-	DemoMode        bool   `json:"demoMode"`
-	EvaluationModel string `json:"evaluationModel"`
-	TranscribeModel string `json:"transcribeModel"`
-	RealtimeModel   string `json:"realtimeModel"`
+	Provider                  string   `json:"provider"`
+	HasAPIKey                 bool     `json:"hasApiKey"`
+	HasOpenAIKey              bool     `json:"hasOpenAIKey"`
+	HasGeminiKey              bool     `json:"hasGeminiKey"`
+	DemoMode                  bool     `json:"demoMode"`
+	EvaluationModel           string   `json:"evaluationModel"`
+	TranscribeModel           string   `json:"transcribeModel"`
+	RealtimeModel             string   `json:"realtimeModel"`
+	SpeechModel               string   `json:"speechModel"`
+	SpeechVoice               string   `json:"speechVoice"`
+	GeminiEvaluationModels    []string `json:"geminiEvaluationModels"`
+	GeminiTranscriptionModels []string `json:"geminiTranscriptionModels"`
+	GeminiSpeechModels        []string `json:"geminiSpeechModels"`
+	GeminiSpeechVoice         string   `json:"geminiSpeechVoice"`
 }
 
 type ConfigureRequest struct {
-	APIKey          string `json:"apiKey"`
-	DemoMode        bool   `json:"demoMode"`
-	EvaluationModel string `json:"evaluationModel"`
-	TranscribeModel string `json:"transcribeModel"`
-	RealtimeModel   string `json:"realtimeModel"`
+	Provider                  string   `json:"provider"`
+	APIKey                    string   `json:"apiKey"`
+	GeminiAPIKey              string   `json:"geminiApiKey"`
+	DemoMode                  bool     `json:"demoMode"`
+	EvaluationModel           string   `json:"evaluationModel"`
+	TranscribeModel           string   `json:"transcribeModel"`
+	RealtimeModel             string   `json:"realtimeModel"`
+	SpeechModel               string   `json:"speechModel"`
+	SpeechVoice               string   `json:"speechVoice"`
+	GeminiEvaluationModels    []string `json:"geminiEvaluationModels"`
+	GeminiTranscriptionModels []string `json:"geminiTranscriptionModels"`
+	GeminiSpeechModels        []string `json:"geminiSpeechModels"`
+	GeminiSpeechVoice         string   `json:"geminiSpeechVoice"`
+}
+
+type SpeechResponse struct {
+	AudioBase64 string `json:"audioBase64"`
+	MimeType    string `json:"mimeType"`
 }
 
 type ExamConfig struct {
@@ -84,18 +106,32 @@ type SubmitAnswerResponse struct {
 }
 
 type OverallReport struct {
-	Score         int      `json:"score"`
-	EstimatedBand string   `json:"estimatedBand"`
-	Summary       string   `json:"summary"`
-	Strengths     []string `json:"strengths"`
-	Priorities    []string `json:"priorities"`
+	Score             int               `json:"score"`
+	EstimatedBand     string            `json:"estimatedBand"`
+	Summary           string            `json:"summary"`
+	Strengths         []string          `json:"strengths"`
+	Weaknesses        []string          `json:"weaknesses"`
+	Priorities        []string          `json:"priorities"`
+	TargetGrade       string            `json:"targetGrade"`
+	TargetStatus      string            `json:"targetStatus"`
+	TargetProbability int               `json:"targetProbability"`
+	GradePredictions  []GradePrediction `json:"gradePredictions"`
+}
+
+type GradePrediction struct {
+	Grade       string `json:"grade"`
+	Probability int    `json:"probability"`
+	Status      string `json:"status"`
+	Description string `json:"description"`
 }
 
 type ExamReport struct {
-	SessionID   string         `json:"sessionId"`
-	Config      ExamConfig     `json:"config"`
-	Overall     OverallReport  `json:"overall"`
-	Answers     []AnswerRecord `json:"answers"`
-	GeneratedAt time.Time      `json:"generatedAt"`
+	SessionID     string         `json:"sessionId"`
+	Config        ExamConfig     `json:"config"`
+	Overall       OverallReport  `json:"overall"`
+	Answers       []AnswerRecord `json:"answers"`
+	AnsweredCount int            `json:"answeredCount"`
+	TotalCount    int            `json:"totalCount"`
+	Partial       bool           `json:"partial"`
+	GeneratedAt   time.Time      `json:"generatedAt"`
 }
-
