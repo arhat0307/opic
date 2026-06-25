@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=OPIc Flow
+Comment=AI voice practice and feedback for the OPIc speaking test
+# The Exec line includes %u to pass the URL to the application
+Exec=/usr/local/bin/opic-flow %u
+Terminal=false
+Type=Application
+Icon=opic-flow
+Categories=Utility;
+StartupWMClass=opic-flow
+
+ 

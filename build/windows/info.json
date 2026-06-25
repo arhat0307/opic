@@ -1,0 +1,15 @@
+{
+	"fixed": {
+		"file_version": "0.1.0"
+	},
+	"info": {
+		"0000": {
+			"ProductVersion": "0.1.0",
+			"CompanyName": "OPIc Flow",
+			"FileDescription": "AI voice practice and feedback for the OPIc speaking test",
+			"LegalCopyright": "(c) 2026, OPIc Flow",
+			"ProductName": "OPIc Flow",
+			"Comments": "Wails 3 + Vue TypeScript desktop application"
+		}
+	}
+}
