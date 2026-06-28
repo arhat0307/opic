@@ -279,7 +279,7 @@ tasks:
     summary: Builds and runs the Docker image
     desc: |
       Builds the Docker image and runs it, exposing port 8080.
-      Usage: task run:docker [TAG=myapp:latest] [PORT=8080]
+      Usage: task run:docker [TAG=myapp:latest] [HOST=0.0.0.0] [PORT=8080]
       Note: The internal container port is always 8080. The PORT variable
       only changes the host port mapping. Ensure your app uses port 8080
       or modify the Dockerfile to match your ServerOptions.Port setting.
@@ -289,9 +289,10 @@ tasks:
           TAG:
             ref: .TAG
     cmds:
-      - docker run --rm -p {{.PORT | default "8080"}}:8080 {{.TAG | default (printf "%s:latest" .APP_NAME)}}
+      - docker run --rm -p {{.HOST | default "0.0.0.0"}}:{{.PORT | default "8080"}}:8080 {{.TAG | default (printf "%s:latest" .APP_NAME)}}
     vars:
       TAG: "{{.TAG}}"
+      HOST: "{{.HOST}}"
       PORT: "{{.PORT}}"
 
   setup:docker:

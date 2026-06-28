@@ -1,3 +1,5 @@
+//go:build !server
+
 package main
 
 import (
@@ -34,10 +36,12 @@ func main() {
 		MinHeight:        680,
 		BackgroundColour: application.NewRGB(246, 247, 243),
 		URL:              "/",
+		Permissions: map[application.PermissionType]application.Permission{
+			application.PermissionMicrophone: application.PermissionAllow,
+		},
 	})
 
 	if err := app.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
-

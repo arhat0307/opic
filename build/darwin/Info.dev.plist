@@ -31,5 +31,7 @@
 		<string>true</string>
 		<key>NSHumanReadableCopyright</key>
 		<string>(c) 2026, OPIc Flow</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>OPIc Flow records your spoken practice answers for transcription and feedback.</string>
 	</dict>
 </plist>
